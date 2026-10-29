@@ -20,6 +20,8 @@ import { useToast } from '@/plugins/toast.js';
 
 
 export default function useWebSocketConnectionToast() {
+    if(import.meta.env.VITE_REVERB_ENABLED.toLowerCase() === "false") return;
+    
     const toast = useToast();
     const t = useI18n().t;
     const status = ref(getState());

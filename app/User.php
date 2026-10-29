@@ -90,4 +90,15 @@ class User extends Authenticatable
     public function preferences() {
         return $this->hasMany('App\UserPreference');
     }
+    
+    /**
+     * Get the column name for the "remember me" token.
+     * Returning null disables the remember token functionality.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return null;
+    }
 }

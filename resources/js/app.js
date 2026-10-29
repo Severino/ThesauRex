@@ -52,8 +52,9 @@ import '@/bootstrap/http.js';
 import i18n from '@/bootstrap/i18n.js';
 // Font Awesome
 import '@/bootstrap/font.js';
+import { bootstrapWebsockets } from '@/bootstrap/websocket';
 // Laravel Echo (Frontend part of Reverb aka WebSockets)
-import '@/bootstrap/websocket.js';
+bootstrapWebsockets();
 
 const app = createApp(App);
 app.use(i18n);
