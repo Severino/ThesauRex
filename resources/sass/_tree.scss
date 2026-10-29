@@ -1,7 +1,3 @@
-.tree-hovered {
-    background-color: rgba(red($orange), green($orange), blue($orange), 0.75) !important;
-}
-
 .tree-clicked {
     font-weight: $font-weight-bold !important;
     background-color: rgba(red($yellow), green($yellow), blue($yellow), 0.75) !important;
@@ -18,10 +14,22 @@
 
 .tree-node {
     padding: 0.1rem 0;
+
+
+}
+
+.tree-node-content.active {
+    margin-left: -5px;
+    padding: 0 5px;
+    border-radius: 3px;
+    background-color: var(--bs-primary);
+    
+    span {
+        color: var(--bs-white) !important;
+    }
 }
 
 .tree-anchor {
-    background-color: $orange;
     border-radius: 3px;
     padding: 0 0.5rem;
 }

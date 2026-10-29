@@ -4,7 +4,8 @@
         @dragenter="onDragEnter"
         @dragleave="onDragLeave"
         :id="`${data.tree}-tree-node-${data.id}`"
-        class="dropdown"
+        class="tree-node-content dropdown"
+        :class="{ 'active': data.isSelected() }"
         v-show="!data.is_placeholder"
     >
         <a
