@@ -1,4 +1,4 @@
-<template>
+    <template>
     <form
         @submit.prevent="emitAdd"
     >
@@ -53,17 +53,17 @@
                 </div>
             </button>
             <input
-                ref="inputField"
                 type="text"
                 class="form-control"
                 v-model="data.content"
                 @input="labelChanged"
+                :disabled="disabled"
             >
             <button
                 v-if="addButton"
                 class="btn btn-success"
                 type="submit"
-                :disabled="!hasContent"
+                :disabled="!hasContent || disabled"
             >
                 <i class="fas fa-fw fa-plus"></i>
             </button>
@@ -74,7 +74,6 @@
 <script>
     import {
         computed,
-        nextTick,
         onMounted,
         ref,
     } from 'vue';
@@ -103,6 +102,7 @@
                 required: false,
                 default: false,
             },
+            loading: Boolean
         },
         emits: ['change', 'add'],
         setup(props, context) {
@@ -130,20 +130,11 @@
             });
             const languages = computed(_ => languageStore.languages);
             const hasContent = computed(_ => !!data.value.content);
-
-            const inputField = ref(null);
+            const disabled = computed(_ => props.loading);
 
             // ON MOUNTED
             onMounted(_ => {
                 data.value.language = languageStore.activeLanguage;
-                // // wrap in two nextTick, to make sure modal is really rendered
-                // // using only one nextTick might fail on some systems
-                nextTick(_ => {
-                    nextTick(_ => {
-                        console.log(inputField)
-                        // inputField.value.focus();
-                    });
-                });
             });
 
             // RETURN
@@ -161,6 +152,7 @@
                 data,
                 languages,
                 hasContent,
+                disabled,
             };
         },
     }

@@ -35,6 +35,7 @@
                 >
                     <LanguageInput
                         :initial-value="initialValue"
+                        :loading="loading"
                         @change="conceptChanged"
                     />
                 </form>
