@@ -3,33 +3,35 @@
         class="concept-detail h-100 d-flex flex-column of-hidden"
         v-if="state.concept"
     >
-        <h4 class="mb-0 d-flex align-items-center gap-2 justify-content-start">
-            {{ state.label }}
-            <small>
-                {{ t('detail.title') }}
-            </small>
-            <small>
+        <header class="d-flex align-items-end justify-content-between gap-3 mb-3">
+            <h4 class="mb-0 d-flex align-items-center gap-2 justify-content-start fw-bold">
+                {{ state.label }}
+                <!-- <small>
                 <span
                     class="badge"
                     :class="state.badgeClass"
                 >
                     {{ t(`tree.${state.tree}.title`) }}
                 </span>
-            </small>
-        </h4>
-        <div class="d-flex flex-row justify-content-start">
-            <code
-                id="concept-url"
-                class="normal text-black-50 truncate-text-start"
-            >{{ state.concept.concept_url }}</code>
-            <a
-                href=""
-                class="ps-2 text-secondary"
-                @click.prevent="copyToClipboard('concept-url')"
-            >
-                <i class="fas fa-fw fa-copy"></i>
-            </a>
-        </div>
+            </small> -->
+            </h4>
+
+            <div class="d-flex flex-row justify-content-start">
+                <code
+                    id="concept-url"
+                    class="normal text-black-50 truncate-text-start"
+                >{{ state.concept.concept_url }}</code>
+                <a
+                    href=""
+                    class="ps-2 text-secondary"
+                    @click.prevent="copyToClipboard('concept-url')"
+                >
+                    <i class="fas fa-fw fa-copy"></i>
+                </a>
+            </div>
+
+        </header>
+
         <div class="form-check form-switch mx-2 pt-2">
             <span v-show="state.updatingTopLevelState">
                 <i class="fas fa-fw fa-spinner fa-spin"></i>
@@ -57,7 +59,7 @@
                 <i class="fas fa-fw fa-info-circle"></i>
             </span>
         </div>
-        <hr class="w-100" />
+        <!-- <hr class="w-100" /> -->
         <div class="row flex-grow-1 of-hidden">
             <div class="col-md-6 h-100 d-flex flex-column">
                 <div class="broaders col px-0 d-flex flex-column mb-2 of-hidden">
@@ -182,15 +184,17 @@
             </div>
             <div class="col-md-6 h-100 d-flex flex-column">
                 <div class="labels col px-0 d-flex flex-column mb-2 of-hidden">
-                    <h5>
-                        {{ t('detail.label.title') }}
+                    <header class="d-flex gap-2 align-items-start">
+                        <h5>
+                            {{ t('detail.label.title') }}
+                        </h5>
                         <span
                             v-show="state.prefLabelCount < state.languages.length"
                             :title="t('detail.label.info_label_missing')"
                         >
-                            <i class="fas fa-fw fa-info-circle"></i>
+                            <i class="fas fa-fw fa-info-circle text-danger"></i>
                         </span>
-                    </h5>
+                    </header>
                     <form
                         role="form"
                         class="mb-2"
