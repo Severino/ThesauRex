@@ -167,8 +167,8 @@
             // Open only the paths. the concept will be selected in the concept detail.
             onMounted(async () => {
                 if(currentRoute.params.id && currentRoute.query.t) {
-                    await conceptStore.openAllConceptPaths(currentRoute.query.t, currentRoute.params.id);
                     await conceptStore.setSelected(currentRoute.params.id, currentRoute.query.t);
+                    await conceptStore.openAllConceptPaths(currentRoute.query.t, currentRoute.params.id);
                 }
             });
 

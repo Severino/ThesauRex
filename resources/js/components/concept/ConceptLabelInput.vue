@@ -4,17 +4,33 @@
         @mouseenter="() => hovered = true"
         @mouseleave="() => hovered = false"
     >
-        <div class="flex-fill">
-            <span v-if="!editing" class="label-text">
+        <div class="flex-fill d-flex overflow-hidden gap-2 aign-items-center">
+            <span
+                class="lang"
+                :data-lang="label.language.short_name"
+            >
+                {{ emojiFlag(label.language.short_name) }}
+            </span>
+
+            <span v-show="label.concept_label_type == 1">
+                <i class="fas fa-fw fa-star color-yellow"></i>
+            </span>
+
+            <span
+                v-if="!editing"
+                class="flex-fill label-text text-truncate"
+                :title="label.label"
+            >
                 {{ label.label }}
             </span>
             <div
                 v-else
-                class="d-flex flex-row align-items-center"
+                class="d-flex flex-row flex-fill align-items-center"
             >
                 <input
                     type="text"
                     class="form-control flex-fill"
+                    style="padding: 0;border: none;"
                     v-model="editValue"
                 />
                 <button
@@ -35,13 +51,11 @@
             </div>
         </div>
         <div class="d-flex gap-1">
-            <div
-                class="hover-actions"
-                v-show="hovered && !editing"
-            >
+            <div class="hover-actions">
                 <span
                     class="edit-button"
                     @click="edit()"
+                    v-if="!editing"
                 >
                     <i class="fas fa-fw fa-edit clickable"></i>
                 </span>
@@ -53,15 +67,7 @@
                     <i class="fas fa-fw fa-trash text-danger clickable"></i>
                 </span>
             </div>
-            <span v-show="label.concept_label_type == 1">
-                <i class="fas fa-fw fa-star color-yellow"></i>
-            </span>
-            <span
-                class="lang"
-                :data-lang="label.language.short_name"
-            >
-                {{ emojiFlag(label.language.short_name) }}
-            </span>
+
         </div>
     </div>
 </template>
@@ -97,7 +103,7 @@
             const editing = ref(false)
             const hovered = ref(false);
             const editValue = ref(null);
-            
+
             const conceptStore = useConceptStore();
 
             const remove = id => {
@@ -121,7 +127,7 @@
                 editing.value = false;
                 editValue.value = null;
             };
-            
+
             const isDirty = () => {
                 return editValue.value !== props.label.label;
             }

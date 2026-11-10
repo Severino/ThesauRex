@@ -2,7 +2,7 @@
     <form
         @submit.prevent="emitAdd"
     >
-        <div class="input-group">
+        <div class="input-group" style="height: 40px;">
             <template v-if="languages.length > 1">
                 <button
                     class="btn btn-outline-secondary dropdown-toggle"
